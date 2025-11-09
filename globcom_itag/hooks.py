@@ -161,6 +161,7 @@ scheduler_events = {
 	# "weekly": [
 	# 	"globcom_itag.tasks.weekly"
 	# ],
+    
 	"monthly": [
 		"globcom_itag.install.after_install"
 	],

@@ -45,8 +45,6 @@ class CustomJobCard(JobCard):
         # super().add_time_log(self, args)
     
     def on_submit(self) -> None:
-		# super().on_submit()
-		# self.set_onload("has_reserved_stock", True)
         if self.get("custom_inspection_required", False):
                         if self.quality_inspection:
                             qi_doc = frappe.get_doc("Quality Inspection", self.quality_inspection)
