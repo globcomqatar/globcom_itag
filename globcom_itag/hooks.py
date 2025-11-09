@@ -148,23 +148,23 @@ override_doctype_class = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"globcom_itag.tasks.all"
-# 	],
-# 	"daily": [
-# 		"globcom_itag.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"globcom_itag.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"globcom_itag.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"globcom_itag.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	# "all": [
+	# 	"globcom_itag.tasks.all"
+	# ],
+	# "daily": [
+	# 	"globcom_itag.tasks.daily"
+	# ],
+	# "hourly": [
+	# 	"globcom_itag.tasks.hourly"
+	# ],
+	# "weekly": [
+	# 	"globcom_itag.tasks.weekly"
+	# ],
+	"monthly": [
+		"globcom_itag.install.after_install"
+	],
+}
 
 # Testing
 # -------

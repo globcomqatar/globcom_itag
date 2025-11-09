@@ -70,6 +70,27 @@ class CustomJobCard(JobCard):
                             )
 
         super().on_submit()
+
+
+    
+    def before_save(self) -> None:
+        if self.work_order and self.operation:
+            try:
+
+                work_order = frappe.get_doc("Work Order", self.work_order)
+                for row in work_order.operations:
+                    if row.operation == self.operation:
+                        self.custom_operation_description = row.description or ""
+                        self.custom_inspection_required = row.custom_quality_inspection_required or ""
+                        break
+
+            except Exception as e:
+                frappe.log_error(
+                    message=f"Error while fetching operation description for Job Card {self.name}: {frappe.get_traceback()}",
+                    title="Job Card Operation Description Fetch Error"
+                )
+
+        super().before_save()
 	
 
 
