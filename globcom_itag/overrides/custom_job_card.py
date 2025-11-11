@@ -77,7 +77,7 @@ class CustomJobCard(JobCard):
 
                 work_order = frappe.get_doc("Work Order", self.work_order)
                 for row in work_order.operations:
-                    if row.operation == self.operation:
+                    if row.operation == self.operation and row.sequence_id == self.sequence_id:
                         self.custom_operation_description = row.description or ""
                         self.custom_inspection_required = row.custom_quality_inspection_required or ""
                         break
