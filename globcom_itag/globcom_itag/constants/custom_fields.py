@@ -11,8 +11,8 @@ CUSTOM_FIELDS = {
         {
             "fieldname": "custom_operation_description",
             "label": "Operation Description",
-            "fieldtype": "Text Editor",
-            "insert_after": "sequence_id",
+            "fieldtype": "Small Text",
+            "insert_after": "operation",
         }, 
         {
             "fieldname": "custom_inspection_required",
