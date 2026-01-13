@@ -5,44 +5,44 @@ from erpnext.manufacturing.doctype.job_card.job_card import (
 
 
 class CustomJobCard(JobCard):
-    def add_time_log(self, args):
+    # def add_time_log(self, args):
 
-        if self.sequence_id >= 2 :
+    #     if self.sequence_id >= 2 :
 
-            query = f"""
-						SELECT twoo.*
-						FROM `tabWork Order Operation` twoo  
-						WHERE twoo.parent = '""" + self.work_order  + """'
-                              AND twoo.idx = """ + str(self.sequence_id - 1 ) + """
-						ORDER BY twoo.idx DESC
-                        LIMIT 1
-						"""
+    #         query = f"""
+	# 					SELECT twoo.*
+	# 					FROM `tabWork Order Operation` twoo  
+	# 					WHERE twoo.parent = '""" + self.work_order  + """'
+    #                           AND twoo.idx = """ + str(self.sequence_id - 1 ) + """
+	# 					ORDER BY twoo.idx DESC
+    #                     LIMIT 1
+	# 					"""
         
-            last_opercation_data = frappe.db.sql(query, as_dict=1)
+    #         last_opercation_data = frappe.db.sql(query, as_dict=1)
 
-            if last_opercation_data :
-                  if last_opercation_data[0]['name'] :
-                    last_opercation_doc_query =  f"""
-                                                    SELECT tjc.*
-                                                    FROM `tabJob Card` tjc  
-                                                    WHERE tjc.operation_id = '""" + last_opercation_data[0]['name']  + """'
-                                                        AND tjc.docstatus = 1
-                                                    ORDER BY tjc.modified DESC
-                                                    """
-                    last_opercation_doc_data = frappe.db.sql(last_opercation_doc_query, as_dict=1)
-                    if last_opercation_doc_data :
-                         pass
-                    else :
-                         frappe.throw(
-                                            f"Please complete <b>{last_opercation_data[0]['operation']}</b> to start this Job Card <b>{self.name}</b>."
-                                    )
+    #         if last_opercation_data :
+    #               if last_opercation_data[0]['name'] :
+    #                 last_opercation_doc_query =  f"""
+    #                                                 SELECT tjc.*
+    #                                                 FROM `tabJob Card` tjc  
+    #                                                 WHERE tjc.operation_id = '""" + last_opercation_data[0]['name']  + """'
+    #                                                     AND tjc.docstatus = 1
+    #                                                 ORDER BY tjc.modified DESC
+    #                                                 """
+    #                 last_opercation_doc_data = frappe.db.sql(last_opercation_doc_query, as_dict=1)
+    #                 if last_opercation_doc_data :
+    #                      pass
+    #                 else :
+    #                      frappe.throw(
+    #                                         f"Please complete <b>{last_opercation_data[0]['operation']}</b> to start this Job Card <b>{self.name}</b>."
+    #                                 )
 
-        super().add_time_log(args)
-        # frappe.throw(
-        #         "Please link a <b>Quality Inspection</b> document before completing this Job Card."
-        # )
+    #     super().add_time_log(args)
+    #     # frappe.throw(
+    #     #         "Please link a <b>Quality Inspection</b> document before completing this Job Card."
+    #     # )
 
-        # super().add_time_log(self, args)
+    #     # super().add_time_log(self, args)
     
     def on_submit(self) -> None:
         if self.get("custom_inspection_required", False):
