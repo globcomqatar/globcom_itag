@@ -137,13 +137,11 @@ override_doctype_class = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Salary Slip": {
+		"before_insert": "globcom_itag.itag_hr.api.salary_slip.set_overtime_hours"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
