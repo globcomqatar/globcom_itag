@@ -1,2 +1,3 @@
 Globcom ITAG
 ITAG HR
+ITAG Quality

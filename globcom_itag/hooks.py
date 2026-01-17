@@ -43,7 +43,9 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Quality Inspection": "public/js/quality_inspection.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -164,6 +166,28 @@ scheduler_events = {
 		"globcom_itag.install.after_install"
 	],
 }
+
+# Fixtures
+# --------
+
+fixtures = [
+	{
+		"dt": "Custom Field",
+		"filters": [
+			[
+				"module", "in", ["ITAG Quality", "ITAG HR"]
+			]
+		]
+	},
+	{
+		"dt": "Property Setter",
+		"filters": [
+			[
+				"module", "in", ["ITAG Quality", "ITAG HR"]
+			]
+		]
+	}
+]
 
 # Testing
 # -------
